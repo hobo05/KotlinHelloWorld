@@ -81,4 +81,60 @@ class HelloWorldTest {
             return null
         }
     }
+
+    @Test
+    fun typeChecksAutomaticCasts() {
+        val p = Person("John", 15)
+        println(getAutoCastAge(p))
+        println(getReverseCastAge(p))
+        println(getAbesAge(p))
+    }
+
+    data class Person(val name: String, val age: Int)
+
+    fun getAutoCastAge(obj: Any): Int? {
+        if (obj is Person) {
+            // No need to cast to Person
+            return obj.age;
+        }
+        return null;
+    }
+
+    fun getReverseCastAge(obj: Any): Int? {
+        if (obj !is Person)
+            return null
+        // Automatically casted to Person
+        // because we did a negative check above
+        return obj.age;
+    }
+
+    fun getAbesAge(obj: Any): Int? {
+        // Also casts the right-side of the
+        // short-circuit clause
+        if (obj is Person && obj.name == "Abe")
+            return obj.age
+
+        return null;
+    }
+
+    @Test
+    fun forLoop() {
+        val arrayA = arrayOf(3,5,8)
+
+        // For in loop
+        for (x in arrayA)
+            print("$x ")
+        println()
+
+        // For loop with indices
+        val arrayB = arrayOf("A", "B", "C")
+        for (y: Int in arrayB.indices)
+            print("${arrayB[y]} ")
+        println()
+
+        // For loop withIndex
+        val arrayC = Array(10, {i -> i+5} )
+        for ((index, value) in arrayC.withIndex())
+            println("index $index has value[$value]")
+    }
 }

@@ -1,7 +1,7 @@
 package com.chengsoft
 
+import org.junit.Assert
 import org.junit.Test
-import kotlin.test.assertEquals
 
 /**
  * Greeting test case.
@@ -15,7 +15,7 @@ class GreetingTest {
      */
     @Test
     fun sayHiWithParameter() {
-        assertEquals("Hello Kotlin!", sayHi("Kotlin"))
+        Assert.assertEquals("Hello Kotlin!", sayHi("Kotlin"))
     }
 
     /**
@@ -25,6 +25,6 @@ class GreetingTest {
      */
     @Test
     fun sayHiWithoutParameter() {
-        assertEquals("Hello World!", sayHi())
+        Assert.assertEquals("Hello World!", sayHi())
     }
 }
